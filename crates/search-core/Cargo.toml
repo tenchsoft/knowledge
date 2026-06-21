@@ -1,0 +1,10 @@
+[package]
+name = "tench-search-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Shared Tench search, index, and retrieval contracts"
+
+[dependencies]
+serde.workspace = true

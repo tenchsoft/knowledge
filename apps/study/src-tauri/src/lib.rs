@@ -1,0 +1,156 @@
+mod commands;
+mod i18n;
+mod state;
+pub mod ui;
+
+use std::sync::Mutex;
+
+#[cfg_attr(mobile, tauri::mobile_entry_point)]
+pub fn run() {
+    tauri::Builder::default()
+        .manage(Mutex::new(state::StudyState::default()))
+        .invoke_handler(tauri::generate_handler![
+            commands::session::load_study_state,
+            commands::session::save_study_state,
+            commands::session::save_study_profile,
+            commands::session::load_study_profile,
+            commands::session::save_study_learner_progress,
+            commands::session::load_study_learner_progress,
+            commands::session::record_answer,
+            commands::session::update_spaced_repetition,
+            commands::session::get_due_review_concepts,
+            commands::session::mark_reviewed,
+            commands::session::get_study_stats,
+            commands::session::increment_session,
+            commands::session::add_elapsed_seconds,
+            commands::session::update_streak,
+            commands::session::study_i18n_required_keys,
+            commands::session::study_i18n_catalog,
+            commands::session::study_i18n_coverage,
+            commands::session::prepare_study_ai_engine_request,
+            commands::session::study_ai_prompt_templates,
+            commands::session::complete_study_ai_draft_from_engine_output,
+            commands::session::can_commit_study_ai_draft,
+            commands::session::set_study_ai_draft_status,
+            commands::session::approve_study_ai_draft_for_commit,
+            commands::catalog::study_subject_catalog,
+            commands::catalog::study_builtin_curricula,
+            commands::catalog::study_builtin_visual_specs,
+            commands::catalog::study_builtin_assessments,
+            commands::catalog::study_builtin_content_coverage_report,
+            commands::catalog::study_builtin_glossary_terms,
+            commands::catalog::study_dashboard_snapshot,
+            commands::catalog::study_shared_search_query,
+            commands::catalog::search_study_curriculum,
+            commands::catalog::search_study_notes_cards,
+            commands::catalog::search_study_glossary_terms,
+            commands::validation::validate_study_curriculum,
+            commands::validation::validate_study_content_pack,
+            commands::validation::validate_study_visual,
+            commands::validation::validate_study_glossary_term,
+            commands::validation::detect_study_import_format,
+            commands::validation::plan_study_file_import_paths,
+            commands::validation::study_card_exchange_format_for_import,
+            commands::validation::study_note_exchange_format_for_import,
+            commands::validation::grade_study_practice_item,
+            commands::notes::create_study_note,
+            commands::notes::create_study_card_from_note,
+            commands::notes::create_study_image_occlusion_card_from_note,
+            commands::notes::create_study_audio_card_from_note,
+            commands::notes::create_study_code_card_from_note,
+            commands::notes::extract_study_cloze_cards_from_note,
+            commands::notes::export_study_cards,
+            commands::notes::import_study_cards,
+            commands::notes::find_duplicate_study_cards,
+            commands::notes::cleanup_imported_study_cards,
+            commands::notes::export_study_cards_anki_package_zip,
+            commands::notes::export_study_cards_anki_apkg,
+            commands::notes::import_study_cards_anki_package_zip,
+            commands::notes::import_study_cards_anki_apkg,
+            commands::notes::export_study_notes,
+            commands::notes::import_study_notes,
+            commands::notes::find_duplicate_study_notes,
+            commands::notes::cleanup_imported_study_notes,
+            commands::notes::export_study_progress_report,
+            commands::notes::build_study_progress_report_view,
+            commands::progress::create_study_progress_backup,
+            commands::progress::export_study_progress_backup_json,
+            commands::progress::import_study_progress_backup_json,
+            commands::progress::export_study_progress_backup_zip,
+            commands::progress::import_study_progress_backup_zip,
+            commands::progress::preview_study_progress_restore,
+            commands::progress::restore_study_progress_backup_payload,
+            commands::progress::save_study_progress_backup,
+            commands::progress::load_study_progress_backup,
+            commands::progress::grade_study_exam_session,
+            commands::progress::build_study_exam_session,
+            commands::progress::study_exam_timing_status,
+            commands::progress::grade_study_exam_session_with_rubrics,
+            commands::progress::build_study_exam_result_review,
+            commands::progress::export_study_exam_report,
+            commands::progress::schedule_study_review_at,
+            commands::progress::apply_study_fsrs_hint,
+            commands::progress::bury_study_review_until,
+            commands::progress::set_study_review_suspended,
+            commands::progress::build_study_review_queue,
+            commands::progress::study_review_stats,
+            commands::authoring::validate_curriculum_pack_draft,
+            commands::authoring::export_curriculum_pack_draft_json,
+            commands::authoring::import_curriculum_pack_draft_json,
+            commands::authoring::create_custom_curriculum_pack_draft,
+            commands::authoring::add_lesson_to_curriculum_pack_draft,
+            commands::authoring::add_practice_item_to_curriculum_pack_draft,
+            commands::authoring::add_learning_visual_to_curriculum_pack_draft,
+            commands::authoring::add_assessment_to_curriculum_pack_draft,
+            commands::authoring::add_glossary_term_to_curriculum_pack_draft,
+            commands::authoring::preview_curriculum_pack_draft,
+            commands::authoring::curriculum_pack_localization_report,
+            commands::authoring::publish_curriculum_pack_draft,
+            commands::authoring::save_curriculum_pack_draft,
+            commands::authoring::load_curriculum_pack_draft,
+            commands::authoring::save_published_curriculum_pack,
+            commands::authoring::load_published_curriculum_pack,
+            commands::authoring::export_published_content_pack_archive_json,
+            commands::authoring::import_published_content_pack_archive_json,
+            commands::authoring::export_published_content_pack_archive_zip,
+            commands::authoring::import_published_content_pack_archive_zip,
+            commands::authoring::install_study_content_pack_archive,
+            commands::authoring::update_study_content_pack_archive,
+            commands::authoring::rollback_study_content_pack,
+            commands::authoring::save_study_content_pack_registry,
+            commands::authoring::load_study_content_pack_registry,
+            commands::visual::apply_study_visual_action,
+            commands::visual::build_study_visual_draw_plan,
+            commands::visual::build_study_practice_feedback_visual_draw_plan,
+            commands::visual::build_study_code_trace_visual_draw_plan,
+            commands::curriculum::add_study_curriculum_node,
+            commands::curriculum::add_study_curriculum_edge,
+            commands::curriculum::study_curriculum_orphan_nodes,
+            commands::code::grade_study_code_execution,
+            commands::code::validate_study_code_execution_request,
+            commands::code::queue_study_code_execution_job,
+            commands::code::start_study_code_execution_job,
+            commands::code::cancel_study_code_execution_job,
+            commands::code::study_code_execution_result_from_test_outputs,
+            commands::release::study_release_readiness_report,
+        ])
+        .setup(|app| {
+            crate::init_tenchi_ui(app);
+            Ok(())
+        })
+        .run(tauri::generate_context!())
+        .expect("failed to run Tench Study");
+}
+
+pub type BackendState = tench_ui::platform::TauriBackendState;
+
+/// Initialize tench-ui rendering on a Tauri window.
+pub fn init_tenchi_ui(app: &mut tauri::App) {
+    tench_ui::platform::init_tauri_ui(
+        app,
+        tench_ui::platform::TauriUiOptions::default(),
+        |backend, _app| {
+            backend.set_root(ui::StudyApp::new());
+        },
+    );
+}

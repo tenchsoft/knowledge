@@ -1,0 +1,8 @@
+[package]
+name = "tench-workspace-guard"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "workspace-guard"
+path = "main.rs"

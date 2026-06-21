@@ -1,0 +1,11 @@
+[package]
+name = "tench-job-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Shared Tench background job, progress, and task event contracts"
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true

@@ -1,0 +1,20 @@
+[package]
+name = "tench-study-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Shared Tench Study curriculum, learning, review, visual, and content pack primitives"
+
+[dependencies]
+rusqlite.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+tench-document-core.workspace = true
+tench-fs-core.workspace = true
+tench-job-core.workspace = true
+tench-search-core.workspace = true
+tench-storage-core.workspace = true
+tench-shared-types.workspace = true
+unicode-segmentation.workspace = true
+zip.workspace = true

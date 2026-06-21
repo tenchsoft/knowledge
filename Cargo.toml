@@ -1,0 +1,59 @@
+[workspace]
+members = [
+  "apps/research/src-tauri",
+  "apps/study/src-tauri",
+  "crates/tench-ui",
+  "crates/ui-automation-core",
+  "crates/tench-ui-test",
+  "crates/shared-types",
+  "crates/storage-core",
+  "crates/fs-core",
+  "crates/document-core",
+  "crates/office-io",
+  "crates/job-core",
+  "crates/search-core",
+  "crates/app-core",
+  "crates/research-core",
+  "crates/study-core",
+  "tools/architecture-guard",
+  "tools/workspace-guard",
+]
+resolver = "3"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "UNLICENSED"
+authors = ["Tench"]
+
+[workspace.dependencies]
+# External dependencies used by workspace members
+aes-gcm = { version = "0.10" }
+chrono = { version = "0.4" }
+getrandom = { version = "0.3" }
+image = { version = "0.25", default-features = false, features = ["bmp", "gif", "ico", "jpeg", "png", "pnm", "tga", "tiff", "webp"] }
+pollster = { version = "0.4" }
+regex = { version = "1" }
+rusqlite = { version = "0.39.0", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1" }
+sha2 = { version = "0.10" }
+tauri = { version = "2" }
+tauri-build = { version = "2" }
+unicode-segmentation = { version = "1" }
+zip = { version = "8.6", default-features = false, features = ["deflate"] }
+
+# Internal crates
+tench-app-core = { path = "crates/app-core" }
+tench-document-core = { path = "crates/document-core" }
+tench-fs-core = { path = "crates/fs-core" }
+tench-job-core = { path = "crates/job-core" }
+tench-office-io = { path = "crates/office-io" }
+tench-research-core = { path = "crates/research-core" }
+tench-search-core = { path = "crates/search-core" }
+tench-shared-types = { path = "crates/shared-types" }
+tench-storage-core = { path = "crates/storage-core" }
+tench-study-core = { path = "crates/study-core" }
+tench-ui = { path = "crates/tench-ui" }
+tench-ui-automation-core = { path = "crates/ui-automation-core" }
+tench-ui-test = { path = "crates/tench-ui-test" }

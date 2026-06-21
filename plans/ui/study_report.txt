@@ -1,0 +1,8 @@
+viewport=1280x720 png_bytes=0 focused=None hovered=None
+nodes=5 interactive=3
+depth id role selector center bounds state text
+0 1 window debug_id=study.root (640.0,360.0) [0.0,0.0 1280.0x720.0] static "Tench Study"
+1 1000 dialog debug_id=study.profile (640.0,360.0) [430.0,230.0 420.0x260.0] static "profile setup"
+2 1001 text_input debug_id=study.profile.learner_id (640.0,330.0) [454.0,316.0 372.0x28.0] interactive "study.profile.learner_id"
+2 1002 text_input debug_id=study.profile.display_name (640.0,388.0) [454.0,374.0 372.0x28.0] interactive "study.profile.display_name"
+2 1003 button debug_id=study.profile.next (778.0,452.0) [730.0,438.0 96.0x28.0] interactive "study.profile.next"

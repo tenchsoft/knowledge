@@ -1,0 +1,7 @@
+{
+  "identifier": "default",
+  "description": "Default desktop permissions for Tench Research",
+  "windows": ["main"],
+  "permissions": ["core:default"]
+}
+

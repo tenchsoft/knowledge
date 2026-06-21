@@ -1,0 +1,20 @@
+[package]
+name = "tench-research-core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Shared Tench Research paper, note, visual, storage, and manuscript primitives"
+
+[dependencies]
+serde.workspace = true
+tench-document-core.workspace = true
+tench-fs-core.workspace = true
+tench-job-core.workspace = true
+tench-office-io.workspace = true
+tench-search-core.workspace = true
+tench-storage-core.workspace = true
+tench-shared-types.workspace = true
+serde_json.workspace = true
+unicode-segmentation.workspace = true
+zip.workspace = true
