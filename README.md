@@ -92,7 +92,6 @@ cargo run --locked -p research    # or: study
 ## Pricing
 
 - **$1 / month per device** — every Tench app.
-- Bulk pricing for 5+ devices.
 
 → https://tenchsoft.com/pricing
 
